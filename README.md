@@ -51,14 +51,66 @@ Another thing you can do is export the recording to give it to another developer
 
 ### WebGL Shader Editor
 
+**NOTE**: If you set up a debugger breakpoint, make sure to delete or disable it, and resume execution, or just reload the site if things aren't *moving*.
 
 
+1. Change to the *Shader editor* tab.
+2. You will need to `Reload` the page for the context calls that load shader code to be intercepted.
+3. You'll see a series of entries being added to the left side column, labeled `Program 0`, `Program 1`, and so on...
+4. Each entry corresponds to a WebGL shader loaded by this context.
 
+Let's select a shader by clicking on its entry:
+
+1. Hovering an entry highlights it in red when rendering, so you can determine which program exactly you want to debug (useful when there are *many* programs as in this case). Try hovering over a few entries and notice how different parts of the scene are rendered red.
+2. Clicking on the little eye icon lets you hide or *fake blackbox* programs to toggle their visibility (although what it actually does is hiding their geometry), so you can get things out of the way but still inspect or edit the rest of programs in place, or if you want to find out what is making your rendering slow you can start hiding things until you come up with the culprit. Try toggling a few programs and seeing the effect.
+3. Clicking over the `Program` name selects the entry.
+4. You'll see two panes on the right, corresponding to the *Vertex* and *Fragment* shaders respectively.
+5. Both can be edited and you'll see the result immediately on the screen as the shader is live reloaded as you type.
+6. But this site is using three.js so the shaders are programmatically generated and are full of `#ifdefs` that make demoing the editors a bit too complex, so let's go to a simpler example.
+
+Let's navigate to the [http://learningwebgl.com/lessons/lesson04/index.html](3D objects) demo from the [Learning WebGL](http://learningwebgl.com) site.
+
+1. Notice there is only one (very simple) shader in use now.
+2. Let's edit the fragment shader so we can play with colours. Instead of having `gl_FragColor = vColor;` we can try some of these variations:
+
+```c
+// alpha channel at 0.5
+gl_FragColor = vec4( vColor.x, vColor.y, vColor.z, 0.5);
+
+// saturate the blue channel
+gl_FragColor = vec4( vColor.x, vColor.y, 1.0, 1.0);
+
+// invert the colours
+gl_FragColor = vec4( 1.0 - vColor.x, 1.0 - vColor.y, 1.0 - vColor.z, 1.0);
+```
+
+3. Let's now edit the vertex shader. We can add a new line after line 11, where we modify the values of `gl_Position` before we return from the shader:
+
+```c
+// make everything narrower on the X axis
+gl_Position.x *= 0.5;
+
+// make it ... interesting
+gl_Position.x -= 1.0*sin(gl_Position.y);
+```
+
+Now notice the declaration for the varying `vColor` that we later use in the fragment shader? We can play with its value too. Let's add this line after the `vColor = aVertexColor;` declaration:
+
+```glsl
+vColor.x = 0.5*sin(gl_Position.x);
+```
+
+this way we make the colour of each pixel depend on its x position as well, not just the standard interpolation between colours.
 
 ## Demoing: Things that are Broken
 
 - [ ] Sites that do *not* use `requestAnimationFrame` are not intercepted yet
 - [ ] Canvas in iframes (not in the current document) are not detected
+
+## What's next for these tools?
+
+* A better way to identify slowness or performance bottlenecks
+* Consolidating everything in just one "game" tool, instead of different panels.
 
 ## Reference Materials
 
