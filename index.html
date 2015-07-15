@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>Graphics debugging with Firefox DevTools</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<h1>Graphics debugging with Firefox DevTools</h1>
+		<h2>Demoing the Canvas Inspector</h2>
+		<p>
+			<a href="http://helloracer.com/webgl/">Hello Racer WebGL version</a>
+		</p>
+		<h2>Demoing the WebGL Shader editor</h2>
+		<p>
+			<a href="http://learningwebgl.com/lessons/lesson04/index.html">3D objects</a>
+		</p>
+
+		<h3>Playing with fragment shader</h3>
+
+		<code><pre>
+// alpha channel at 0.5
+gl_FragColor = vec4( vColor.x, vColor.y, vColor.z, 0.5);
+
+// saturate the blue channel
+gl_FragColor = vec4( vColor.x, vColor.y, 1.0, 1.0);
+
+// invert the colours
+gl_FragColor = vec4( 1.0 - vColor.x, 1.0 - vColor.y, 1.0 - vColor.z, 1.0);
+</pre></code>
+
+		<h3>Playing with vertex shader</h3>
+		<code><pre>
+// make everything narrower on the X axis
+gl_Position.x *= 0.5;
+
+// make it ... interesting
+gl_Position.x -= 1.0*sin(gl_Position.y);
+</pre></code>
+
+<p>and...</p>
+
+<code><pre>
+vColor.x = 0.5*sin(gl_Position.x);
+</pre></code>
+
+	</body>
+</html>

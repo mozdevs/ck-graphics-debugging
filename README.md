@@ -53,7 +53,6 @@ Another thing you can do is export the recording to give it to another developer
 
 **NOTE**: If you set up a debugger breakpoint, make sure to delete or disable it, and resume execution, or just reload the site if things aren't *moving*.
 
-
 1. Change to the *Shader editor* tab.
 2. You will need to `Reload` the page for the context calls that load shader code to be intercepted.
 3. You'll see a series of entries being added to the left side column, labeled `Program 0`, `Program 1`, and so on...
