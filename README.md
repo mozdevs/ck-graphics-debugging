@@ -67,7 +67,7 @@ Let's select a shader by clicking on its entry:
 5. Both can be edited and you'll see the result immediately on the screen as the shader is live reloaded as you type.
 6. But this site is using three.js so the shaders are programmatically generated and are full of `#ifdefs` that make demoing the editors a bit too complex, so let's go to a simpler example.
 
-Let's navigate to the [http://learningwebgl.com/lessons/lesson04/index.html](3D objects) demo from the [Learning WebGL](http://learningwebgl.com) site.
+Let's navigate to the [3D objects](http://learningwebgl.com/lessons/lesson04/index.html) demo from the [Learning WebGL](http://learningwebgl.com) site.
 
 1. Notice there is only one (very simple) shader in use now.
 2. Let's edit the fragment shader so we can play with colours. Instead of having `gl_FragColor = vColor;` we can try some of these variations:
