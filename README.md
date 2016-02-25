@@ -1,6 +1,6 @@
 # Graphics debugging with Firefox DevTools
 
-> Current as of July 2015
+> Current as of February 2016
 
 ## Introduction
 
@@ -22,6 +22,8 @@ For __any presentation__:
 - [ ] the Canvas Inspector or WebGL Shader editor enabled in DevTools' settings (open DevTools - click on the 'cog' icon on the top right side, then under *Default Firefox Developer Tools* make sure the *Shader Editor* and *Canvas* entries are checked).
 
 ## Demoing / Script
+
+[Launcher with 'tips and tricks'](https://mozdevs.github.io/ck-graphics-debugging/)
 
 Let's visit [Hello Racer](http://helloracer.com/webgl/).
 
